@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="layout.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>D&D Character Creator</title>
+</head>
+<body>
+    <nav>
+        <button id="btn-new">New</button>
+        <button id="btn-save">Save</button>
+        <button id="btn-load">Load</button>
+        <button id="btn-export">Export</button>
+    </nav>
+    <div id="modal-load-character" class="modal">
+        <div class="modal-content">
+            <ul id="saved-characters">
+            </ul>
+        </div>
+    </div>
+    <article>
+        <section id="background">
+            <div class="column">
+                <input type="text" name="char-name" id="char-name" placeholder="Character Name">
+            </div>
+            <div class="column">
+                <section>
+                    <input type="text" name="char-class" id="char-class" placeholder="Class">
+                    <label for="char-level">Lvl: </label>
+                    <input type="number" name="char-level" id="char-level" min="1" value="1">
+                    <label for="char-exp">Exp: </label>
+                    <input type="number" name="char-exp" id="char-exp" min="0" value="0">
+                </section>
+                <section>
+                    <input type="text" name="char-race" id="char-race" placeholder="Race">
+                    <input type="text" name="char-background" id="char-background" placeholder="Background">
+                </section>
+            </div>
+        </section>
+        <div class="column">
+            <div class="column">
+                <section id="attributes">
+                    <h1>Attributes</h1>
+                    <ul>
+                        <li>
+                            <label for="attr-str">Strength</label>
+                            <input type="number" name="attr-str" id="attr-str" min="0" value="10">
+                            <output type="number" id="mod-str">0</output>
+                        </li>
+                        <li>
+                            <label for="attr-dex">Dexterity</label>
+                            <input type="number" name="attr-dex" id="attr-dex" min="0" value="10">
+                            <output type="number" id="mod-dex">0</output>
+                        </li>
+                        <li>
+                            <label for="attr-con">Constitution</label>
+                            <input type="number" name="attr-con" id="attr-con" min="0" value="10">
+                            <output type="number" id="mod-con">0</output>
+                        </li>
+                        <li>
+                            <label for="attr-int">Intelligence</label>
+                            <input type="number" name="attr-int" id="attr-int" min="0" value="10">
+                            <output type="number" id="mod-int">0</output>
+                        </li>
+                        <li>
+                            <label for="attr-wis">Wisdom</label>
+                            <input type="number" name="attr-wis" id="attr-wis" min="0" value="10">
+                            <output type="number" id="mod-wis">0</output>
+                        </li>
+                        <li>
+                            <label for="attr-cha">Charisma</label>
+                            <input type="number" name="attr-cha" id="attr-cha" min="0" value="10">
+                            <output type="number" id="mod-cha">0</output>
+                        </li>
+                    </ul>
+                </section>
+            </div>
+            <div class="column">
+                <section id="proficiency">
+                    <input type="number" name="prof-bonus" id="prof-bonus" value="0">
+                    <label for="offset-prof-bonus">Proficiency Bonus</label>
+                </section>
+                <section id="saving-throws">
+                    <h1>Saving Throws</h1>
+                    <ul>
+                        <li>
+                            <input type="checkbox" name="save-prof-str" id="save-prof-str">
+                            <span id="number-sign-str" class="optional-number-sign">+</span>
+                            <input type="number" name="save-offset-str" id="save-offset-str" class="offset">
+                            <label for="save-offset-str">Strength</label>
+                            <output type="number" id="save-str">0</output>
+                        </li>
+                        <li>
+                            <input type="checkbox" name="save-prof-dex" id="save-prof-dex">
+                            <span id="number-sign-dex" class="optional-number-sign">+</span>
+                            <input type="number" name="save-offset-dex" id="save-offset-dex" class="offset">
+                            <label for="save-offset-dex">Dexterity</label>
+                            <output type="number" id="save-dex">0</output>
+                        </li>
+                        <li>
+                            <input type="checkbox" name="save-prof-con" id="save-prof-con">
+                            <span id="number-sign-con" class="optional-number-sign">+</span>
+                            <input type="number" name="save-offset-con" id="save-offset-con" class="offset">
+                            <label for="save-offset-con">Constitution</label>
+                            <output type="number" id="save-con">0</output>
+                        </li>
+                        <li>
+                            <input type="checkbox" name="save-prof-int" id="save-prof-int">
+                            <span id="number-sign-int" class="optional-number-sign">+</span>
+                            <input type="number" name="save-offset-int" id="save-offset-int" class="offset">
+                            <label for="save-offset-int">Intelligence</label>
+                            <output type="number" id="save-int">0</output>
+                        </li>
+                        <li>
+                            <input type="checkbox" name="save-prof-wis" id="save-prof-wis">
+                            <span id="number-sign-wis" class="optional-number-sign">+</span>
+                            <input type="number" name="save-offset-wis" id="save-offset-wis" class="offset">
+                            <label for="save-offset-wis">Wisdom</label>
+                            <output type="number" id="save-wis">0</output>
+                        </li>
+                        <li>
+                            <input type="checkbox" name="save-prof-cha" id="save-prof-cha">
+                            <span id="number-sign-cha" class="optional-number-sign">+</span>
+                            <input type="number" name="save-offset-cha" id="save-offset-cha" class="offset">
+                            <label for="save-offset-cha">Charisma</label>
+                            <output type="number" id="save-cha">0</output>
+                        </li>
+                    </ul>
+                </section>
+                <section id="skills">
+                    <h1>Skills</h1>
+                    <ul>
+                        <li>
+                            <input type="checkbox" name="skill-prof-acrobatics" id="skill-prof-acrobatics">
+                            <span id="number-sign-acrobatics" class="optional-number-sign">+</span>
+                            <input type="number" name="skill-offset-acrobatics" id="skill-offset-acrobatics" class="offset">
+                            <label for="skill-offset-acrobatics">Acrobatics</label>
+                            <output type="number" id="skill-acrobatics">0</output>
+                        </li>
+                        <li>
+                            <input type="checkbox" name="skill-prof-animal-handling" id="skill-prof-animal-handling">
+                            <span id="number-sign-animal-handling" class="optional-number-sign">+</span>
+                            <input type="number" name="skill-offset-animal-handling" id="skill-offset-animal-handling" class="offset">
+                            <label for="skill-offset-animal-handling">Animal Handling</label>
+                            <output type="number" id="skill-animal-handling">0</output>
+                        </li>
+                        <li>
+                            <input type="checkbox" name="skill-prof-arcana" id="skill-prof-arcana">
+                            <span id="number-sign-arcana" class="optional-number-sign">+</span>
+                            <input type="number" name="skill-offset-arcana" id="skill-offset-arcana" class="offset">
+                            <label for="skill-offset-arcana">Arcana</label>
+                            <output type="number" id="skill-arcana">0</output>
+                        </li>
+                        <li>
+                            <input type="checkbox" name="skill-prof-athletics" id="skill-prof-athletics">
+                            <span id="number-sign-athletics" class="optional-number-sign">+</span>
+                            <input type="number" name="skill-offset-athletics" id="skill-offset-athletics" class="offset">
+                            <label for="skill-offset-athletics">Athletics</label>
+                            <output type="number" id="skill-athletics">0</output>
+                        </li>
+                        <li>
+                            <input type="checkbox" name="skill-prof-deception" id="skill-prof-deception">
+                            <span id="number-sign-deception" class="optional-number-sign">+</span>
+                            <input type="number" name="skill-offset-deception" id="skill-offset-deception" class="offset">
+                            <label for="skill-offset-deception">Deception</label>
+                            <output type="number" id="skill-deception">0</output>
+                        </li>
+                        <li>
+                            <input type="checkbox" name="skill-prof-history" id="skill-prof-history">
+                            <span id="number-sign-history" class="optional-number-sign">+</span>
+                            <input type="number" name="skill-offset-history" id="skill-offset-history" class="offset">
+                            <label for="skill-offset-history">History</label>
+                            <output type="number" id="skill-history">0</output>
+                        </li>
+                        <li>
+                            <input type="checkbox" name="skill-prof-insight" id="skill-prof-insight">
+                            <span id="number-sign-insight" class="optional-number-sign">+</span>
+                            <input type="number" name="skill-offset-insight" id="skill-offset-insight" class="offset">
+                            <label for="skill-offset-insight">Insight</label>
+                            <output type="number" id="skill-insight">0</output>
+                        </li>
+                        <li>
+                            <input type="checkbox" name="skill-prof-intimidation" id="skill-prof-intimidation">
+                            <span id="number-sign-intimidation" class="optional-number-sign">+</span>
+                            <input type="number" name="skill-offset-intimidation" id="skill-offset-intimidation" class="offset">
+                            <label for="skill-offset-intimidation">Intimidation</label>
+                            <output type="number" id="skill-intimidation">0</output>
+                        </li>
+                        <li>
+                            <input type="checkbox" name="skill-prof-investigation" id="skill-prof-investigation">
+                            <span id="number-sign-investigation" class="optional-number-sign">+</span>
+                            <input type="number" name="skill-offset-investigation" id="skill-offset-investigation" class="offset">
+                            <label for="skill-offset-investigation">Investigation</label>
+                            <output type="number" id="skill-investigation">0</output>
+                        </li>
+                        <li>
+                            <input type="checkbox" name="skill-prof-medicine" id="skill-prof-medicine">
+                            <span id="number-sign-medicine" class="optional-number-sign">+</span>
+                            <input type="number" name="skill-offset-medicine" id="skill-offset-medicine" class="offset">
+                            <label for="skill-offset-medicine">Medicine</label>
+                            <output type="number" id="skill-medicine">0</output>
+                        </li>
+                        <li>
+                            <input type="checkbox" name="skill-prof-nature" id="skill-prof-nature">
+                            <span id="number-sign-nature" class="optional-number-sign">+</span>
+                            <input type="number" name="skill-offset-nature" id="skill-offset-nature" class="offset">
+                            <label for="skill-offset-nature">Nature</label>
+                            <output type="number" id="skill-nature">0</output>
+                        </li>
+                        <li>
+                            <input type="checkbox" name="skill-prof-perception" id="skill-prof-perception">
+                            <span id="number-sign-perception" class="optional-number-sign">+</span>
+                            <input type="number" name="skill-offset-perception" id="skill-offset-perception" class="offset">
+                            <label for="skill-offset-perception">Perception</label>
+                            <output type="number" id="skill-perception">0</output>
+                        </li>
+                        <li>
+                            <input type="checkbox" name="skill-prof-performance" id="skill-prof-performance">
+                            <span id="number-sign-performance" class="optional-number-sign">+</span>
+                            <input type="number" name="skill-offset-performance" id="skill-offset-performance" class="offset">
+                            <label for="skill-offset-performance">Performance</label>
+                            <output type="number" id="skill-performance">0</output>
+                        </li>
+                        <li>
+                            <input type="checkbox" name="skill-prof-persuation" id="skill-prof-persuation">
+                            <span id="number-sign-persuation" class="optional-number-sign">+</span>
+                            <input type="number" name="skill-offset-persuation" id="skill-offset-persuation" class="offset">
+                            <label for="skill-offset-persuation">Persuation</label>
+                            <output type="number" id="skill-persuation">0</output>
+                        </li>
+                        <li>
+                            <input type="checkbox" name="skill-prof-religion" id="skill-prof-religion">
+                            <span id="number-sign-religion" class="optional-number-sign">+</span>
+                            <input type="number" name="skill-offset-religion" id="skill-offset-religion" class="offset">
+                            <label for="skill-offset-religion">Religion</label>
+                            <output type="number" id="skill-religion">0</output>
+                        </li>
+                        <li>
+                            <input type="checkbox" name="skill-prof-sleight-of-hand" id="skill-prof-sleight-of-hand">
+                            <span id="number-sign-sleight-of-hand" class="optional-number-sign">+</span>
+                            <input type="number" name="skill-offset-sleight-of-hand" id="skill-offset-sleight-of-hand" class="offset">
+                            <label for="skill-offset-sleight-of-hand">Sleight of Hand</label>
+                            <output type="number" id="skill-sleight-of-hand">0</output>
+                        </li>
+                        <li>
+                            <input type="checkbox" name="skill-prof-stealth" id="skill-prof-stealth">
+                            <span id="number-sign-stealth" class="optional-number-sign">+</span>
+                            <input type="number" name="skill-offset-stealth" id="skill-offset-stealth" class="offset">
+                            <label for="skill-offset-stealth">Stealth</label>
+                            <output type="number" id="skill-stealth">0</output>
+                        </li>
+                        <li>
+                            <input type="checkbox" name="skill-prof-survival" id="skill-prof-survival">
+                            <span id="number-sign-survival" class="optional-number-sign">+</span>
+                            <input type="number" name="skill-offset-survival" id="skill-offset-survival" class="offset">
+                            <label for="skill-offset-survival">Survival</label>
+                            <output type="number" id="skill-survival">0</output>
+                        </li>
+                    </ul>
+                </section>
+            </div>
+        </div>
+        <div class="column">
+            <section id="combat">
+                <div class="column">
+                    <input type="number" name="armour-class" id="armour-class">
+                    <label for="armour-class">Armour Class</label>
+                </div>
+                <div class="column">
+                    <input type="number" name="initiative" id="initiative" class="offset">
+                    <label for="initiative">Initiative</label>
+                </div>
+                <div class="column">
+                    <input type="number" name="speed" id="speed">
+                    <label for="speed">Speed</label>
+                </div>
+            </section>
+            <section id="hit-points">
+                <div>
+                    <div class="column">
+                        <section>
+                            <h1>Hit Dice</h1>
+                            <input type="text" name="hit-dice" id="hit-dice">
+                        </section>
+                    </div>
+                    <div class="column">
+                        <section>
+                            <h1>Max Hit Points</h1>
+                            <input type="number" name="maximum-hp" id="maximum-hp">
+                        </section>
+                    </div>
+                </div>
+                <div>
+                    <div class="column">
+                        <section>
+                            <h1>Temporary Hit Points</h1>
+                            <input type="number" name="current-hp" id="current-hp">
+                        </section>
+                    </div>
+                    <div class="column">
+                        <section id="death-saves">
+                            <h1>Death Saves</h1>
+                            <label>Successes</label>
+                            <div class="line">
+                                <input type="checkbox" name="death-save-succeed-1" id="death-save-succeed-1">
+                                <input type="checkbox" name="death-save-succeed-2" id="death-save-succeed-2">
+                                <input type="checkbox" name="death-save-succeed-3" id="death-save-succeed-3">
+                            </div>
+                            <br>
+                            <label>Failures</label>
+                            <div class="line">
+                                <input type="checkbox" name="death-save-fail-1" id="death-save-fail-1">
+                                <input type="checkbox" name="death-save-fail-2" id="death-save-fail-2">
+                                <input type="checkbox" name="death-save-fail-3" id="death-save-fail-3">
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </section>
+            <section id="attacks">
+                <h1>Attacks</h1>
+                <ul id="attack-list">
+                    <li>
+                        <input type="text" name="attack-name-1" id="attack-name-1" placeholder="Name" class="attack-name">
+                        <input type="number" name="attack-bonus-1" id="attack-bonus-1" placeholder="Bonus" class="attack-bonus">
+                        <input type="text" name="attack-damage-1" id="attack-damage-1" placeholder="Damage" class="attack-damage">
+                    </li>
+                    <li>
+                        <input type="text" name="attack-name-2" id="attack-name-2" placeholder="Name" class="attack-name">
+                        <input type="number" name="attack-bonus-2" id="attack-bonus-2" placeholder="Bonus" class="attack-bonus">
+                        <input type="text" name="attack-damage-2" id="attack-damage-2" placeholder="Damage" class="attack-damage">
+                    </li>
+                </ul>
+                <button id="btn-add-attack">Add Row</button>
+                <button id="btn-del-attack">Delete Last Row</button>
+            </section>
+            <section id="spells">
+                <h1>Spells</h1>
+                <textarea name="spell-text" id="spell-text"></textarea>  
+            </section>
+        </div>
+        <div class="column">
+            <section id="features-traits">
+                <h1>Features &amp; Traits</h1>
+                <textarea name="feature-text" id="feature-text"></textarea>  
+            </section>
+            <section id="proficiencies-languages">
+                <h1>Proficiencies &amp; Languages</h1>
+                <textarea name="proficiencies-text" id="proficiency-text"></textarea>  
+            </section>
+            <section id="equipment">
+                <h1>Equipment</h1>
+                <textarea name="equipment-text" id="equipment-text"></textarea>  
+            </section>
+        </div>
+    </article>
+    <script type="text/javascript" src="func.js"></script>
+    <script type="text/javascript" src="fileFunc.js"></script>
+    <script type="text/javascript" src="setup.js"></script>
+</body>
+</html>

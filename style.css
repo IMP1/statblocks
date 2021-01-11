@@ -1,0 +1,17 @@
+#attributes {
+    background-color: #ddd;
+}
+#attributes li {
+    background-color: #fff;
+}
+#attributes li input {
+    border: none;
+    border-bottom: 1px solid black;
+}
+#attributes li output {
+    border: 1px solid black;
+    border-radius: 1rem;
+    position: relative;
+    top: 0.8rem;
+    background-color: #fff;
+}
