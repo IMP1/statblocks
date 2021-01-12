@@ -155,8 +155,24 @@ function showSavedCharacters() {
         charName.textContent = name;
         listItem.appendChild(charName);
 
-        // TODO: Get character data
-        // TODO: Add race/class/background/level info
+        const detailsSpan = document.createElement("span");
+        detailsSpan.classList.add("details");
+
+        const charData = JSON.parse(localStorage.getItem(CHARACTER_NAME_PREFIX + name));
+
+        const raceSpan = document.createElement("span");
+        raceSpan.textContent = charData.race;
+        detailsSpan.appendChild(raceSpan);
+
+        const levelSpan = document.createElement("span");
+        levelSpan.textContent = "Lvl. " + charData.level;
+        detailsSpan.appendChild(levelSpan);
+
+        const classSpan = document.createElement("span");
+        classSpan.textContent = charData.class;
+        detailsSpan.appendChild(classSpan);
+        
+        listItem.appendChild(detailsSpan);
         
         const loadButton = document.createElement("button");
         loadButton.textContent = "Load";
