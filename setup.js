@@ -19,12 +19,18 @@ function setup() {
     document.getElementById("btn-save").onclick = save;
     document.getElementById("btn-load").onclick = showSavedCharacters;
     document.getElementById("btn-export").onclick = exportJson;
+    document.getElementById("btn-import").onclick = showImportBox;
+    document.getElementById("btn-import-json").onclick = importJson;
+    document.getElementById("btn-export-copy").onclick = copyJsonToClipboard;
+    document.getElementById("btn-export-close").onclick = () => document.getElementById("modal-export-character").style.display = "none";
 
-    const modal = document.getElementById("modal-load-character");
+    const modals = [...document.getElementsByClassName("modal")];
     window.addEventListener("click", event => {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
+        modals.forEach(modal => {
+            if (event.target === modal) {
+                modal.style.display = "none";
+            }
+        });
     });
 
     console.log("Setup Finished.");

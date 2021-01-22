@@ -179,7 +179,12 @@ function showSavedCharacters() {
         listItem.appendChild(loadButton);
         loadButton.onclick = function() {
             modal.style.display = "none";
-            load(name);
+            const dataString = localStorage.getItem(CHARACTER_NAME_PREFIX + name);
+            if (!dataString) {
+                console.log("Could not find data for '" + name + "'.");
+                return;
+            }
+            load(JSON.parse(dataString));
         };
 
         listElement.appendChild(listItem);
@@ -189,21 +194,13 @@ function showSavedCharacters() {
         const emptyMessage = document.createElement("h1");
         emptyMessage.textContent = "Could not found any saved characters.\nWhy not make some?";
         listElement.appendChild(emptyMessage);
-
     }
 
     modal.style.display = "block";
 }
 
-function load(characterName) {
+function load(data) {
     console.log("Loading...");
-
-    const dataString = localStorage.getItem(CHARACTER_NAME_PREFIX + characterName);
-    if (!dataString) {
-        console.log("Could not find data for '" + characterName + "'.");
-        return;
-    }
-    const data = JSON.parse(dataString);
 
     setValue("char-name", data.name);
     setValue("char-race", data.race);
@@ -329,7 +326,7 @@ function load(characterName) {
     setValue("proficiency-text", data.proficiencies);
     setValue("equipment-text", data.equipment);
 
-    window.sessionStorage.setItem("currentCharacter", characterName);
+    window.sessionStorage.setItem("currentCharacter", data.name);
     console.log("Loaded.");
 
     for (const id in listeners) {
@@ -337,11 +334,39 @@ function load(characterName) {
     }
 }
 
+function copyJsonToClipboard() {
+    const exportTextArea = document.getElementById("export-character-json");
+    exportTextArea.focus();
+    exportTextArea.select();
+    document.execCommand('copy');
+}
+
 function exportJson() {
-    console.log("Exporting JSON...");
+    const modal = document.getElementById("modal-export-character");
+    modal.style.display = "block";
+
     const characterData = characterToJson();
-    console.log(JSON.stringify(characterData));
-    console.log("JSON Exported.");
+    const textarea = document.getElementById("export-character-json");
+    textarea.value = JSON.stringify(characterData);
+}
+
+function importJson() {
+    const modal = document.getElementById("modal-import-character");
+    modal.style.display = "none";
+    const dataString = document.getElementById("import-character-json").value;
+    document.getElementById("import-character-json").value = "";
+    const jsonData = null;
+    try {
+        jsonData = JSON.parse(dataString);
+    } catch(error) {
+        return;
+    }
+    load(jsonData);
+}
+
+function showImportBox() {
+    const modal = document.getElementById("modal-import-character");
+    modal.style.display = "block";
 }
 
 function clear() {
