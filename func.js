@@ -118,7 +118,6 @@ function addAttackRow() {
     listItem.appendChild(nameInput);
     listItem.appendChild(document.createTextNode("\n")); // To mirror the HTML (and any gaps due to whitespace)
 
-
     const bonusInput = document.createElement("input");
     bonusInput.type = "number";
     bonusInput.bonus = "attack-bonus-" + nextId;
