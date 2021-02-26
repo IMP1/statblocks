@@ -19,24 +19,32 @@
         <div class="modal-content">
             <h1>Load Character</h1>
             <div>
-                <button>Show All</button>
-                <input type="checkbox" name="show-cat-1" id="show-cat-1" checked><label for="show-cat-1"><i class="fas fa-user"></i></label>
-                <input type="checkbox" name="show-cat-2" id="show-cat-2" checked><label for="show-cat-2"><i class="fas fa-dragon"></i></label>
-                <input type="checkbox" name="show-cat-3" id="show-cat-3" checked><label for="show-cat-3"><i class="fas fa-moon"></i></label>
-                <input type="checkbox" name="show-cat-4" id="show-cat-4" checked><label for="show-cat-4"><i class="fas fa-sun"></i></label>
-                <input type="checkbox" name="show-cat-5" id="show-cat-5" checked><label for="show-cat-5"><i class="fas fa-tree"></i></label>
-                <input type="checkbox" name="show-cat-6" id="show-cat-6" checked><label for="show-cat-6"><i class="fas fa-home"></i></label>
-                <input type="checkbox" name="show-cat-7" id="show-cat-7" checked><label for="show-cat-7"><i class="fas fa-chess-rook"></i></label>
-                <input type="checkbox" name="show-cat-8" id="show-cat-8" checked><label for="show-cat-8"><i class="fas fa-dungeon"></i></label>
-                <input type="checkbox" name="show-cat-9" id="show-cat-9" checked><label for="show-cat-9"><i class="fas fa-mountain"></i></label>
-                <input type="checkbox" name="show-cat-10" id="show-cat-10" checked><label for="show-cat-10"><i class="fas fa-water"></i></label>
-                <input type="checkbox" name="show-cat-11" id="show-cat-11" checked><label for="show-cat-11"><i class="fas fa-fire"></i></label>
-                <input type="checkbox" name="show-cat-12" id="show-cat-12" checked><label for="show-cat-12"><i class="fas fa-crown"></i></label>
-                <input type="checkbox" name="show-cat-13" id="show-cat-13" checked><label for="show-cat-13"><i class="fas fa-magic"></i></label>
-                <input type="checkbox" name="show-cat-14" id="show-cat-14" checked><label for="show-cat-14"><i class="fas fa-anchor"></i></label>
-                <input type="checkbox" name="show-cat-15" id="show-cat-15" checked><label for="show-cat-15"><i class="fas fa-shield-virus"></i></label>
-                <input type="checkbox" name="show-cat-16" id="show-cat-16" checked><label for="show-cat-16"><i class="fas fa-flag"></i></label>
-                <button>Hide All</button>
+                <button id="btn-category-all">Show All</button>
+                <input type="checkbox" name="show-cat-1" id="show-cat-1" checked><label for="show-cat-1"><i title="One-Shot" class="fas fa-map-marker-alt"></i></label>
+                <input type="checkbox" name="show-cat-2" id="show-cat-2" checked><label for="show-cat-2"><i title="Campaign" class="fas fa-route"></i></label>
+                <input type="checkbox" name="show-cat-3" id="show-cat-3" checked><label for="show-cat-3"><i title="Character" class="fas fa-user"></i></label>
+                <input type="checkbox" name="show-cat-4" id="show-cat-4" checked><label for="show-cat-4"><i title="Monster" class="fas fa-dragon"></i></label>
+                <!-- <input type="checkbox" name="show-cat-4" id="show-cat-4" checked><label for="show-cat-4"><i class="fas fa-sun"></i></label> -->
+                <!-- <input type="checkbox" name="show-cat-5" id="show-cat-5" checked><label for="show-cat-5"><i class="fas fa-tree"></i></label> -->
+                <!-- <input type="checkbox" name="show-cat-6" id="show-cat-6" checked><label for="show-cat-6"><i class="fas fa-home"></i></label> -->
+                <!-- <input type="checkbox" name="show-cat-7" id="show-cat-7" checked><label for="show-cat-7"><i class="fas fa-chess-rook"></i></label> -->
+                <!-- <input type="checkbox" name="show-cat-8" id="show-cat-8" checked><label for="show-cat-8"><i class="fas fa-dungeon"></i></label> -->
+                <!-- <input type="checkbox" name="show-cat-9" id="show-cat-9" checked><label for="show-cat-9"><i class="fas fa-mountain"></i></label> -->
+                <!-- <input type="checkbox" name="show-cat-10" id="show-cat-10" checked><label for="show-cat-10"><i class="fas fa-water"></i></label> -->
+                <!-- <input type="checkbox" name="show-cat-11" id="show-cat-11" checked><label for="show-cat-11"><i class="fas fa-fire"></i></label> -->
+                <input type="checkbox" name="show-cat-12" id="show-cat-12" checked><label for="show-cat-12"><i title="Royal" class="fas fa-crown"></i></label>
+                <!-- <input type="checkbox" name="show-cat-13" id="show-cat-13" checked><label for="show-cat-13"><i class="fas fa-magic"></i></label> -->
+                <!-- <input type="checkbox" name="show-cat-15" id="show-cat-15" checked><label for="show-cat-15"><i class="fas fa-shield-virus"></i></label> -->
+                <input type="checkbox" name="show-cat-14" id="show-cat-14" checked><label for="show-cat-14"><i title="Sailor" class="fas fa-anchor"></i></label>
+                <input type="checkbox" name="show-cat-16" id="show-cat-16" checked><label for="show-cat-16"><i title="Military" class="fas fa-flag"></i></label>
+                <button id="btn-category-none">Hide All</button>
+                <button id="btn-category-reset">Reset All</button>
+                <!-- TODO: Add indeterminate states
+                    Have checked mean must contain this category, 
+                    unchecked mean must not contain this category, 
+                    and indeterminate mean doesn't matter for this category
+                    SEE: https://css-tricks.com/indeterminate-checkboxes/ 
+                -->
             </div>
             <ul id="saved-characters">
             </ul>
