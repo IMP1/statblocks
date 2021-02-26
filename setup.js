@@ -33,6 +33,18 @@ function setup() {
         });
     });
 
+    const categories = ["show-cat-1", "show-cat-2", "show-cat-3", "show-cat-4"];
+    categories.forEach(function(id) {
+        const btn = document.getElementById(id);
+        btn.onclick = () => toggleCategoryButton(id);
+    });
+
+    document.getElementById("btn-category-all").onclick = showAllCategories;
+    document.getElementById("btn-category-none").onclick = hideAllCategories;
+    document.getElementById("btn-category-reset").onclick = resetAllCategories;
+
+    resetAllCategories();
+
     console.log("Setup Finished.");
 
 }

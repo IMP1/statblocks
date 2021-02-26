@@ -145,3 +145,41 @@ function deleteAttackRow() {
         listElement.removeChild(lastListItem);
     }
 }
+
+function toggleCategoryButton(button_id) {
+    const button = document.getElementById(button_id)
+    if (button.readOnly) 
+        button.checked = button.readOnly = false;
+    else if (!button.checked) 
+        button.readOnly = button.indeterminate = true;
+}
+
+function showAllCategories() {
+    const categories = ["show-cat-1", "show-cat-2", "show-cat-3", "show-cat-4"];
+    categories.forEach(function(id) {
+        const btn = document.getElementById(id);
+        btn.checked = true;
+        btn.readOnly = false;
+        btn.indeterminate = false;
+    });
+}
+
+function hideAllCategories() {
+    const categories = ["show-cat-1", "show-cat-2", "show-cat-3", "show-cat-4"];
+    categories.forEach(function(id) {
+        const btn = document.getElementById(id);
+        btn.checked = false;
+        btn.readOnly = false;
+        btn.indeterminate = false;
+    });
+}
+
+function resetAllCategories() {
+    const categories = ["show-cat-1", "show-cat-2", "show-cat-3", "show-cat-4"];
+    categories.forEach(function(id) {
+        const btn = document.getElementById(id);
+        btn.readOnly = true;
+        btn.indeterminate = true;
+    });
+}
+
