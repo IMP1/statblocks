@@ -146,12 +146,24 @@ function deleteAttackRow() {
     }
 }
 
-function toggleCategoryButton(button_id) {
-    const button = document.getElementById(button_id)
+function updateCharacterListFilter() {
+    console.log("updating character list to match categories...");
+    const necessaryCategories = [];
+    const forbiddenCategories = [];
+    const listElement = document.getElementById("saved-characters");
+    [...listElement.children].forEach(function(listItem) {
+        // TODO: If has all of necessaryCategories and none of forbiddenCategories
+        //       then set LI display to block (or whatever), else set LI display to none
+    });
+}
+
+function toggleCategoryButton(buttonId) {
+    const button = document.getElementById(buttonId)
     if (button.readOnly) 
         button.checked = button.readOnly = false;
     else if (!button.checked) 
         button.readOnly = button.indeterminate = true;
+    updateCharacterListFilter();
 }
 
 function showAllCategories() {
@@ -162,6 +174,7 @@ function showAllCategories() {
         btn.readOnly = false;
         btn.indeterminate = false;
     });
+    updateCharacterListFilter();
 }
 
 function hideAllCategories() {
@@ -172,6 +185,7 @@ function hideAllCategories() {
         btn.readOnly = false;
         btn.indeterminate = false;
     });
+    updateCharacterListFilter();
 }
 
 function resetAllCategories() {
@@ -181,5 +195,5 @@ function resetAllCategories() {
         btn.readOnly = true;
         btn.indeterminate = true;
     });
+    updateCharacterListFilter();
 }
-
