@@ -98,10 +98,17 @@ nav {
     display: none;
 }
 #modal-load-character label {
-    color: #ccc;
+    color: #f00;
     font-size: 1rem;
     margin-left: 0.1rem;
     margin-right: 0.1rem;
+    -webkit-user-select: none;  /* Chrome all / Safari all */
+    -moz-user-select: none;     /* Firefox all */
+    -ms-user-select: none;      /* IE 10+ */
+    user-select: none;          /* Likely future */  
+}
+#modal-load-character input[type=checkbox]:indeterminate + label {
+    color: #ccc;
 }
 #modal-load-character input[type=checkbox]:checked + label {
     color: black;
@@ -112,7 +119,7 @@ nav {
 #modal-load-character li h1 {
     font-size: 1.5rem;
     display: inline-block;
-    width: 20%;
+    width: 30%;
     margin-left: 0.5rem;
     margin-top: 0.2rem;
     margin-bottom: 0.2rem;
