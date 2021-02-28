@@ -147,13 +147,20 @@ function deleteAttackRow() {
 }
 
 function updateCharacterListFilter() {
-    console.log("updating character list to match categories...");
-    const necessaryCategories = [];
-    const forbiddenCategories = [];
+    const categories = ["cat-1", "cat-2", "cat-3", "cat-4"];
+    const categoryCheckboxes = categories.map(c => document.getElementById("show-" + c));
+    const necessaryCategories = categoryCheckboxes.filter(cb => cb.checked && !cb.indeterminate).map(cb => cb.id.substring(5));
+    const forbiddenCategories = categoryCheckboxes.filter(cb => !cb.checked && !cb.indeterminate).map(cb => cb.id.substring(5));
     const listElement = document.getElementById("saved-characters");
     [...listElement.children].forEach(function(listItem) {
-        // TODO: If has all of necessaryCategories and none of forbiddenCategories
-        //       then set LI display to block (or whatever), else set LI display to none
+        listItem.style.display = "block";    
+        const characterCategories = listItem.dataset.categories || [];
+        if (necessaryCategories.every(c => characterCategories.includes(c)) && 
+        forbiddenCategories.every(c => !characterCategories.includes(c))) {
+            listItem.style.display = "block";    
+        } else {
+            listItem.style.display = "none";    
+        }
     });
 }
 

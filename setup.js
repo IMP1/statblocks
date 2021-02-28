@@ -33,10 +33,10 @@ function setup() {
         });
     });
 
-    const categories = ["show-cat-1", "show-cat-2", "show-cat-3", "show-cat-4"];
+    const categories = ["cat-1", "cat-2", "cat-3", "cat-4"];
     categories.forEach(function(id) {
-        const btn = document.getElementById(id);
-        btn.onclick = () => toggleCategoryButton(id);
+        const btn = document.getElementById("show-" + id);
+        btn.onclick = () => toggleCategoryButton("show-" + id);
     });
 
     document.getElementById("btn-category-all").onclick = showAllCategories;

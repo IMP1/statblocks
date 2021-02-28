@@ -183,6 +183,7 @@ function showSavedCharacters() {
         detailsSpan.appendChild(classSpan);
         
         listItem.appendChild(detailsSpan);
+        listItem.dataset.categories = charData.categories;
         
         const loadButton = document.createElement("button");
         loadButton.textContent = "Load";
@@ -207,6 +208,7 @@ function showSavedCharacters() {
     }
 
     modal.style.display = "block";
+    updateCharacterListFilter();
 }
 
 function load(data) {
