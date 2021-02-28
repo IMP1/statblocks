@@ -69,6 +69,23 @@ nav {
     padding-bottom: 0.5rem;
 }
 
+#char-categories input[type="checkbox"] {
+    display: none;
+}
+#char-categories label {
+    color: #ccc;
+    font-size: 1rem;
+    margin-left: 0.1rem;
+    margin-right: 0.1rem;
+    -webkit-user-select: none;  /* Chrome all / Safari all */
+    -moz-user-select: none;     /* Firefox all */
+    -ms-user-select: none;      /* IE 10+ */
+    user-select: none;          /* Likely future */  
+}
+#char-categories input[type=checkbox]:checked + label {
+    color: black;
+}
+
 .modal {
     display: none;
     position: fixed;
