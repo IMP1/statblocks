@@ -21,6 +21,15 @@ function characterToJson() {
             damage: getValue("attack-damage-" + index),
         });
     });
+    const categories = [];
+    [...document.getElementById("char-categories").children].forEach((element, i) => {
+        if (element.tagName == "INPUT") {
+            const categoryName = element.id.substring(5);
+            if (element.checked) {
+                categories.push(categoryName)
+            }
+        }
+    });
 
     let characterData = {
         name:       getValue("char-name"),
@@ -99,12 +108,13 @@ function characterToJson() {
         deathSaveSuccesses: [getValue("death-save-succeed-1"), getValue("death-save-succeed-2"), getValue("death-save-succeed-3")],
         deathSaveFailures: [getValue("death-save-fail-1"), getValue("death-save-fail-2"), getValue("death-save-fail-3")],
 
-        attacks: attacks,
-
         spells: getValue("spell-text"),
         features: getValue("feature-text"),
         proficiencies: getValue("proficiency-text"),
         equipment: getValue("equipment-text"),
+
+        attacks: attacks,
+        categories: categories,
     };
 
     return characterData;
@@ -284,6 +294,11 @@ function load(data) {
     setValue("death-save-fail-2", data.deathSaveFailures[1]);
     setValue("death-save-fail-3", data.deathSaveFailures[2]);
 
+    setValue("spell-text", data.spells);
+    setValue("feature-text", data.features);
+    setValue("proficiency-text", data.proficiencies);
+    setValue("equipment-text", data.equipment);
+
     const attackList = document.getElementById("attack-list");
     while (attackList.firstChild) {
         attackList.removeChild(attackList.lastChild);
@@ -321,10 +336,16 @@ function load(data) {
         attackList.appendChild(listItem);
     });
 
-    setValue("spell-text", data.spells);
-    setValue("feature-text", data.features);
-    setValue("proficiency-text", data.proficiencies);
-    setValue("equipment-text", data.equipment);
+    const categoryList = document.getElementById("char-categories");
+    [...categoryList.children].filter(elem => elem.tagName == "INPUT").forEach(elem => {    
+        elem.checked = false;
+        if (data.categories) {
+            const categoryName = elem.id.substring(5);
+            if (data.categories.includes(categoryName)) {
+                elem.checked = true;
+            }
+        }
+    });
 
     window.sessionStorage.setItem("currentCharacter", data.name);
     console.log("Loaded.");
