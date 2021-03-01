@@ -39,8 +39,6 @@ function setup() {
         btn.onclick = () => toggleCategoryButton("show-" + id);
     });
 
-    document.getElementById("btn-category-all").onclick = showAllCategories;
-    document.getElementById("btn-category-none").onclick = hideAllCategories;
     document.getElementById("btn-category-reset").onclick = resetAllCategories;
 
     resetAllCategories();

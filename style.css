@@ -54,6 +54,13 @@ button {
     font-family: 'Open Sans', sans-serif;
     font-size: 80%;
     background-color: rgba(255, 255, 255, 0.4);
+    border-color: rgba(0, 0, 0, 0.4);
+    border-width: 1px;
+}
+label,
+input,
+button:hover {
+    border-color: rgba(0, 0, 0);
 }
 
 input#char-name {
@@ -68,4 +75,3 @@ h1,
 input#char-name {
     font-family: 'Texturina', serif;
 }
-

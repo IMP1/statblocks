@@ -147,6 +147,13 @@ function save() {
     window.localStorage.setItem(CHARACTER_NAME_PREFIX + characterName, JSON.stringify(characterData));
     window.sessionStorage.setItem("currentCharacter", characterName);
     console.log("Saved.");
+
+    const tooltip = document.getElementById("tooltip");
+    tooltip.innerText = "Saved.";
+    tooltip.classList.remove("fade-out");
+    void tooltip.offsetWidth;
+    tooltip.classList.add("fade-out");
+
 }
 
 function showSavedCharacters() {
