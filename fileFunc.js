@@ -112,6 +112,7 @@ function characterToJson() {
         features: getValue("feature-text"),
         proficiencies: getValue("proficiency-text"),
         equipment: getValue("equipment-text"),
+        notes: getValue("notes-text"),
 
         attacks: attacks,
         categories: categories,
@@ -312,6 +313,7 @@ function load(data) {
     setValue("feature-text", data.features);
     setValue("proficiency-text", data.proficiencies);
     setValue("equipment-text", data.equipment);
+    setValue("notes-text", data.notes);
 
     const attackList = document.getElementById("attack-list");
     while (attackList.firstChild) {
@@ -362,6 +364,7 @@ function load(data) {
     });
 
     window.sessionStorage.setItem("currentCharacter", data.name);
+    window.history.pushState('statblock', data.name, '/statblock.html?load=' + data.name);
     console.log("Loaded.");
 
     for (const id in listeners) {

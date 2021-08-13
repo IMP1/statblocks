@@ -31,9 +31,9 @@ function setValue(id, value) {
     } else if (element.type === "output") {
         element.value = value;
     } else if (element.type === "text") {
-        element.value = value;
+        element.value = value || "";
     } else if (element.type === "textarea") {
-        element.value = value;
+        element.value = value || "";
     } else {
         throw "Unexpected input type.";
     }
