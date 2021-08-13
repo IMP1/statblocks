@@ -394,6 +394,7 @@ function importJson() {
     try {
         jsonData = JSON.parse(dataString);
     } catch(error) {
+        console.log(error);
         return;
     }
     load(jsonData);
