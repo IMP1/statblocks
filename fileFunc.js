@@ -364,7 +364,7 @@ function load(data) {
     });
 
     window.sessionStorage.setItem("currentCharacter", data.name);
-    window.history.pushState('statblock', data.name, '/statblock.html?load=' + data.name);
+    window.history.pushState('statblock', data.name, 'statblocks/statblock.html?load=' + data.name);
     console.log("Loaded.");
 
     for (const id in listeners) {
