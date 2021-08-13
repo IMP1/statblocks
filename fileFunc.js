@@ -390,7 +390,7 @@ function importJson() {
     modal.style.display = "none";
     const dataString = document.getElementById("import-character-json").value;
     document.getElementById("import-character-json").value = "";
-    const jsonData = null;
+    let jsonData = null;
     try {
         jsonData = JSON.parse(dataString);
     } catch(error) {
