@@ -197,12 +197,8 @@ function showSavedCharacters() {
         listItem.appendChild(loadButton);
         loadButton.onclick = function() {
             modal.style.display = "none";
-            const dataString = localStorage.getItem(CHARACTER_NAME_PREFIX + name);
-            if (!dataString) {
-                console.log("Could not find data for '" + name + "'.");
-                return;
-            }
-            load(JSON.parse(dataString));
+            console.log(name);
+            load_character(name);
         };
 
         listElement.appendChild(listItem);
@@ -216,6 +212,15 @@ function showSavedCharacters() {
 
     modal.style.display = "block";
     updateCharacterListFilter();
+}
+
+function load_character(name) {
+    const dataString = localStorage.getItem(CHARACTER_NAME_PREFIX + name);
+    if (!dataString) {
+        console.log("Could not find data for '" + name + "'.");
+        return;
+    }
+    load(JSON.parse(dataString));
 }
 
 function load(data) {

@@ -45,6 +45,13 @@ function setup() {
 
     console.log("Setup Finished.");
 
+    // TODO: Check URL for args
+    const queryString = window.location.search;
+    const params = new URLSearchParams(queryString);
+    if (params.has("load")) {
+        load_character(params.get("load"));
+    }
+
 }
 
 setup();
